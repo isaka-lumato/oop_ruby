@@ -19,11 +19,11 @@ And all of this will be built in a beautiful and well-organized way!
 To get a local copy up and running follow these simple example steps.
 
 ```
-git clone https://github.com/mahbubul14/oop-ruby/
+git clone https://github.com/isaka-lumato/oop-ruby/
 ```
 ## Authors
 
-👤 **Mahbub Alam**
+👤 **isaac lumato**
 - GitHub: [@isaac](https://github.com/isaka-lumato)
 - Twitter: [@lumato_isaac](https://twitter.com/lumato_isaac)
 - LinkedIn: [isaka-william](https://www.linkedin.com/in/isaka-william-90773020b/)
