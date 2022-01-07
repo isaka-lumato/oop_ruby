@@ -1,8 +1,8 @@
-require_relative("./person")
-require_relative("./book")
-require_relative("./rental")
-require_relative("./student")
-require_relative("./teacher")
+require_relative('./person')
+require_relative('./book')
+require_relative('./rental')
+require_relative('./student')
+require_relative('./teacher')
 
 class Methods
   def initialize
@@ -12,70 +12,70 @@ class Methods
   end
 
   def create_person
-    puts "Do you want to create a student (1) or a teacher (2)? [Input the number]: "
+    puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     person_option = Integer(gets.chomp)
 
     case person_option
     when 1
-      print "Age: "
+      print 'Age: '
       user_age = Integer(gets.chomp)
 
-      print "Name: "
+      print 'Name: '
       user_name = gets.chomp
 
-      print "Has parent permission? [Y/N]: "
+      print 'Has parent permission? [Y/N]: '
       user_permission = gets.chomp.to_s.upcase
 
       case user_permission
-      when "Y"
+      when 'Y'
         user_permission = true
-      when "N"
+      when 'N'
         user_permission = false
       end
       student = Student.new(user_age, user_name, parent_permission: user_permission)
       @person_array.push({
                            output: "[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}",
-                           object: student,
+                           object: student
                          })
 
-      puts "Person created successfully!"
+      puts 'Person created successfully!'
       puts "\n"
     when 2
-      print "Age: "
+      print 'Age: '
       user_age = Integer(gets.chomp)
 
-      print "Name: "
+      print 'Name: '
       user_name = gets.chomp
 
-      print "Specialization: "
+      print 'Specialization: '
       user_specialization = gets.chomp
 
       teacher = Teacher.new(user_age, user_name, user_specialization)
       @person_array.push({
                            output: "[Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}",
-                           object: teacher,
+                           object: teacher
                          })
 
-      puts "Person created successfully!"
+      puts 'Person created successfully!'
       puts "\n"
     else
-      puts "Person not created."
+      puts 'Person not created.'
     end
   end
 
   def create_book
-    print "Title: "
+    print 'Title: '
     book_title = gets.chomp
 
-    print "Author: "
+    print 'Author: '
     book_author = gets.chomp
 
-    puts "Book created successfully!"
+    puts 'Book created successfully!'
 
     book = Book.new(book_title, book_author)
     @books.push({
                   output: "Title: #{book.title}, Author: #{book.author}",
-                  object: book,
+                  object: book
                 })
   end
 
@@ -92,36 +92,36 @@ class Methods
   end
 
   def create_rental
-    puts "Select a book from the following list by number: "
+    puts 'Select a book from the following list by number: '
     @books.each_with_index do |book, index|
       puts "#{index}) #{book[:output]}"
     end
     book_selected = Integer(gets.chomp)
     book_chosen = @books[book_selected][:object]
 
-    puts "Select a person from the following list by number (not id): "
+    puts 'Select a person from the following list by number (not id): '
     @person_array.each_with_index do |person, index|
       puts "#{index}) #{person[:output]}"
     end
     person_selected = Integer(gets.chomp)
     person_chosen = @person_array[person_selected][:object]
 
-    print "Date: "
+    print 'Date: '
     rental_date = gets.chomp
-    puts "the rental has been successfully"
+    puts 'the rental has been successfully'
     @rental_array.push(Rental.new(rental_date, book_chosen, person_chosen))
   end
 
   def rental_list
-    print "ID of person: "
+    print 'ID of person: '
     person_id = Integer(gets.chomp)
-    puts "Rental: "
+    puts 'Rental: '
 
     @rental_array.each do |rental|
       if person_id == rental.person.id
         puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
       else
-        puts "ID does not exist"
+        puts 'ID does not exist'
       end
     end
   end
@@ -129,18 +129,18 @@ end
 
 class App
   def self.home_page
-    puts "Welcome to the School Library App!"
+    puts 'Welcome to the School Library App!'
     puts "\n"
-    puts "Please choose an option by entering a number: "
+    puts 'Please choose an option by entering a number: '
 
     @content = {
-      "1" => "List all books",
-      "2" => "List all people",
-      "3" => "Create a person",
-      "4" => "Create a book",
-      "5" => "Create a rental",
-      "6" => "List all rentals for a given person id",
-      "7" => "Exit",
+      '1' => 'List all books',
+      '2' => 'List all people',
+      '3' => 'Create a person',
+      '4' => 'Create a book',
+      '5' => 'Create a rental',
+      '6' => 'List all rentals for a given person id',
+      '7' => 'Exit'
     }
 
     @content.each do |index, string|
@@ -167,10 +167,10 @@ class App
     when 6
       method.rental_list
     when 7
-      puts "Thank you for using the app!"
+      puts 'Thank you for using the app!'
       exit
     else
-      puts "Choose a number between 1 to 7"
+      puts 'Choose a number between 1 to 7'
     end
   end
 end
